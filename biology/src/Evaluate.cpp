@@ -126,8 +126,8 @@ void Evaluate::initializeDistances() {
         for (int j = 0; j <= 12; j++) {
             redA[i][j] = BASE_VALUE;
             redB[i][j] = BASE_VALUE;
-            blueA[i][j] = BASE_VALUE;
-            blueB[i][j] = BASE_VALUE;
+            blueA[i][j] = -BASE_VALUE;
+            blueB[i][j] = -BASE_VALUE;
         }
     }
 
@@ -254,13 +254,13 @@ void Evaluate::computeMobilityAndPotential() {
 }
 
 
-int Evaluate::getValue()
+long long Evaluate::getValue()
 {
-    int baseValue = 10*(bluePotential - redPotential) - (blueMobility - redMobility);
+    long long baseValue = (bluePotential - redPotential) - 10 * (blueMobility - redMobility);
 
     // 添加威胁值影响 - 高权重
-    baseValue += blueThreats * 50;  // 蓝方威胁加分
-    baseValue -= redThreats * 50;   // 红方威胁减分
+    baseValue += blueThreats * 500;  // 蓝方威胁加分
+    baseValue -= redThreats * 500;   // 红方威胁减分
 
     // 终局判断：当一方有威胁而另一方没有时直接返回极大值
     if (blueThreats > 0 && redThreats == 0) return MAXNUM;

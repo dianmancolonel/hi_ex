@@ -46,7 +46,7 @@ int AB::getbestMove()
     if (1 == rounds && status[60]!=EMPTY) //如果为后手,且对方第一手为6，6 下棋5，6
         return position_to_index(5, 6);
 
-    int bestvalue = colorAI == Red ? -MAXNUM : MAXNUM;
+    long long bestvalue = colorAI == Red ? -MAXNUM : MAXNUM;
     int bestidx = -1;
     total_round++;
     //进入alphaBeta剪枝，选取最优节点
@@ -54,7 +54,7 @@ int AB::getbestMove()
     {
         if (status[i] != EMPTY)continue;//如果该点没被下，就继续，否则退出
         status[i] = colorAI;
-        int value = alpha_beta(1, bestvalue, colorAI == Red ? Blue : Red);
+        long long value = alpha_beta(1, bestvalue, colorAI == Red ? Blue : Red);
         status[i] = EMPTY;//恢复棋盘
 
         if (colorAI == Red && value > bestvalue)
@@ -99,7 +99,7 @@ int AB::alpha_beta(int depth, int previousBest, int currentColor)
         return temp;
     }
 
-    int bestvalue = currentColor == Red ? -MAXNUM : MAXNUM;
+    long long bestvalue = currentColor == Red ? -MAXNUM : MAXNUM;
     vector<extended> ex;
     ev = new Evaluate(status);
     for (int i = 0; i < 121; i++)

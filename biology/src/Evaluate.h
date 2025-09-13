@@ -43,7 +43,7 @@ public:
     void detectThreats();
     void computeMobilityAndPotential();
 
-    int getValue();//评估函数
+    long long getValue();//评估函数
     int getChessTotalPotential(int x, int y);//棋子总潜力
     bool isCriticalPoint(int x, int y) const;// 检查是否是关键点
     int getboardTotalPotential();//棋盘总潜力
@@ -60,11 +60,11 @@ public:
     int blueThreats = 0;    // 蓝方威胁点数
     bitset<121> criticalPoints; // 关键点位置（11x11=121），使用 bitset
     int controlFactor = 0;  // 控制因子
-    int redPotential = BASE_VALUE;//红色潜力值
-    int bluePotential = BASE_VALUE;//蓝色潜力值
-    int totalPotential = 0;// 总潜力值
-    int redMobility = 0;//红色的进攻机动性
-    int blueMobility = 0;//蓝色的进攻机动性
+    long long redPotential = BASE_VALUE;//红色潜力值
+    long long bluePotential = BASE_VALUE;//蓝色潜力值
+    long long totalPotential = BASE_VALUE;// 总潜力值
+    long long redMobility = 0;//红色的进攻机动性
+    long long blueMobility = 0;//蓝色的进攻机动性
 };
 
 #endif //HI_EX_EVALUATE_H
